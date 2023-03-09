@@ -1,0 +1,15 @@
+{% load static %}
+
+<!-- Hero Search Section Begin -->
+<center>
+    <div class="hero-search set-bg" data-setbg="{% static 'vendor/img/search-bg.png' %}">
+        <div class="container">
+            <div class="filter-table">
+                <form action="{% url 'posts:post_search' %}" class="filter-search">
+                    <input type="text" name="termo" value="{{ request.GET.termo }}" placeholder="Pesquisar posts...">
+                    <button type="submit">Pesquisar</button>
+                </form>
+            </div>
+        </div>
+</center>
+<!-- Hero Search Section End -->

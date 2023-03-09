@@ -1,0 +1,50 @@
+{% extends '_layouts/base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}Rockets Blog{% endblock %}
+
+{% block conteudo %}
+
+<!-- Page Content -->
+
+{% include '_partials/_search.html '%}
+
+<!-- Recipe Section Begin -->
+<section class="recipe-section spad">
+    <div class="container">
+        <div class="row">
+        {% for post in posts %}
+            <div class="col-lg-4 col-sm-6">
+                <div class="recipe-item">
+                        <a href="{% url 'posts:post_detail' post.id %}"><img src="{{ post.image_post.url }}"></a>
+
+                        <div class="ri-text">
+                            <div class="cat-name">{{ post.category_post }}</div>
+
+                            <p class="card-text">
+                                <small class="text-muted">
+                                    {{ post.date_posted_post|naturalday|title }}
+                                    |
+                                    {{ post.comments.count }} comentário(s)
+                                    |
+                                    {{ post.category_post|title }}
+                                </small>
+                            </p>
+
+                            <a href="{% url 'posts:post_detail' post.id %}">
+                                <h4>{{ post.title_post }}</h4>
+                            </a>
+                            <p>{{ post.excerpt_post }}</p>
+                        </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+            {% include '_partials/_pagination.html' %}
+    </div>
+</section>
+<!-- Recipe Section End -->
+
+{% endblock %}

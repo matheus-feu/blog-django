@@ -1,0 +1,45 @@
+{% load static %}
+
+<!-- Footer Section Begin -->
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="fs-left">
+                    <div class="logo">
+                        <a href="{% url 'posts:index' %}">
+                            <!-- Logo -->
+                            <img src="{% static 'vendor/img/logo-rockets.png' %}" alt="">
+                        </a>
+                    </div>
+                    <p>
+                    Aqui, você encontrará informações sobre a equipe responsável pelo blog, bem como nossas redes sociais e outras formas de entrar em contato conosco. Além disso, nossos leitores também poderão acessar as categorias de artigos do blog para encontrar conteúdo específico sobre os temas de seu interesse.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 offset-lg-1">
+                <form action="#" class="subscribe-form">
+                    <h3>Assine a nossa newsletter</h3>
+                    <input type="email" placeholder="Seu e-mail">
+                    <button type="submit">Inscreva-se</button>
+                </form>
+                <div class="social-links">
+                    <a href="#"><i class="fa fa-instagram"></i><span>Instagram</span></a>
+                    <a href="#"><i class="fa fa-pinterest"></i><span>Pinterest</span></a>
+                    <a href="#"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+                    <a href="#"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+                    <a href="#"><i class="fa fa-youtube"></i><span>Youtube</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- Js Plugins -->
+    <script src="{% static 'vendor/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'vendor/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendor/js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'vendor/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendor/js/mixitup.min.js' %}"></script>
+    <script src="{% static 'vendor/js/main.js' %}"></script>
+<!-- Footer Section End -->

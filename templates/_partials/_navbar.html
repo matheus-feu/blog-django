@@ -1,0 +1,29 @@
+{% load static %}
+
+<!-- Header Section Begin -->
+<header class="header-section-other">
+    <div class="container-fluid">
+        <div class="logo">
+            <a href="{% url 'posts:index' %}"><img src="{% static 'vendor/img/logo-rockets.png' %}"></a>
+        </div>
+        <div class="nav-menu">
+            <nav class="main-menu mobile-menu">
+                <ul>
+                    <li class="active"><a href="{% url 'posts:index' %}">Página Inicial</a></li>
+                    <li><a href="#">Categorias</a>
+                        <ul class="sub-menu">
+                            <li><a href="{% url 'posts:post_category' 'python' %}">Python</a></li>
+                            <li><a href="{% url 'posts:post_category' 'django' %}">Django</a></li>
+                            <li><a href="{% url 'posts:post_category' 'flask' %}">Flask</a></li>
+                            <li><a href="{% url 'posts:post_category' 'tecnologia' %}">Tecnologia</a></li>
+                            <li><a href="{% url 'posts:post_category' 'sistemas' %}">Sistemas</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+</header>
+<!-- Header End -->

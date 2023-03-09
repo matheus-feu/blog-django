@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <!-- Head Section  -->
+    {% include '_partials/_head.html' %}
+
+    <!-- Title -->
+    <title>{% block title %}Página Inicial{% endblock %}</title>
+
+</head>
+
+    <body>
+
+        <!-- Preloader -->
+        {% include '_partials/_preloader.html' %}
+
+        <!-- Navbar Section -->
+        {% include '_partials/_navbar.html' %}
+
+        <!-- Page Content -->
+        {% block conteudo %} {% endblock %}
+
+        <!-- Footer Section Begin -->
+        {% include '_partials/_footer.html' %}
+
+    </body>
+
+</html>
