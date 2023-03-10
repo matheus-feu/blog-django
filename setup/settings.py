@@ -151,3 +151,4 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.INFO: 'alert-info',
 }
+

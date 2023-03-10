@@ -505,7 +505,7 @@ ol {
 }
 
 .page-top-recipe .pt-recipe-item .pt-recipe-img {
-    height: 311px;
+    height: 500px;
     min-width: 100%;
     position: relative;
     z-index: 1;
@@ -1212,16 +1212,17 @@ ol {
 -----------------------*/
 
 .recipe-item {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .recipe-item a {
     display: block;
-    margin-bottom: 34px;
+    margin-bottom: 40px;
 }
 
 .recipe-item a img {
-    min-width: 100%;
+    max-width: 100%;
+   ;
 }
 
 .recipe-item .ri-text .cat-name {
