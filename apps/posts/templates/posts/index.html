@@ -2,6 +2,7 @@
 
 {% load static %}
 {% load humanize %}
+{% load comments_filters %}
 
 {% block title %}Rockets Blog{% endblock %}
 
@@ -27,7 +28,7 @@
                                 <small class="text-muted">
                                     {{ post.date_posted_post|naturalday|title }}
                                     |
-                                    {{ post.comments.count }} comentário(s)
+                                    {{ post.comments|filter_count_comments|title }}
                                     |
                                     {{ post.category_post|title }}
                                 </small>

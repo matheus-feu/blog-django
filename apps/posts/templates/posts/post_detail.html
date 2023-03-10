@@ -3,118 +3,130 @@
 
 {% block title %} {{ post.title_post|title }} {% endblock %}
 
-
 {% block conteudo %}
 
-{% include '_partials/_search.html' %}
+    {% include '_partials/_search.html' %}
 
-<!-- Details Section Begin -->
-<section class="blog-section">
+    <!-- Details Section Begin -->
+    <section class="testimonial-section section-padding">
 
-    <div class="container">
-        <div class="row pt-5 justify-content-center">
-            <div class="col-xl"></div>
-            <div class="col-xl-8">
-
-                <!-- Image -->
-                {% if post.image_post %}
-                <img class="img-fluid pb-5" src="{{ post.image_post.url }}" alt="{{ post.title_post }}">
-                {% endif %}
-
-            </div>
-            <div class="col-xl"></div>
-        </div>
-
-
-        <!-- Content -->
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="blog-text">
-                        <div class="blog-title">
-                            <span>{{ post.author_post }} | {{ post.date_posted_post }} | {{ post.category_post }}</span>
-                            <h2>{{ post.title_post }}</h2>
-                            <ul class="tags">
-                                {% for category in post.category_post.all %}
-                                <li>{{ category.name_cat }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+            <div class="row pt-5 justify-content-center">
+                <div class="col-xl"></div>
+                <div class="col-xl-8">
 
-                        <div class="blog-desc">
-                            <p>{{ post.content_post|safe }}</p>
-                        </div>
+                    <!-- Image -->
+                    {% if post.image_post %}
+                        <img class="img-fluid pb-5" src="{{ post.image_post.url }}" alt="{{ post.title_post }}">
+                    {% endif %}
 
-                        <!-- Comment -->
-                        <div class="blog-comment">
-                            <h3>Comentários ({{ comments.count }})</h3>
-                                {% for comment in comments %}
-                            <div class="single-comment">
-                                <ul>
-                                    <li>{{ comment.name_com }}</li>
-                                    <li>{{ comment.date_com }}</li>
+                </div>
+                <div class="col-xl"></div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="blog-text">
+                            <div class="blog-title">
+                                <span>{{ post.author_post }} | {{ post.date_posted_post }} | {{ post.category_post }}</span>
+                                <h2>{{ post.title_post }}</h2>
+                                <ul class="tags">
+                                    {% for category in post.category_post.all %}
+                                        <li>{{ category.name_cat }}</li>
+                                    {% endfor %}
                                 </ul>
-                                <p>{{ comment.comment }}</p>
-                            {% endfor %}
                             </div>
-                        </div>
+                            <!-- Description -->
+                            <div class="blog-desc">
+                                <p>{{ post.content_post|safe }}</p>
+                            </div>
+                            <!-- Resume -->
+                            <div class="blog-quote">
+                                <i class="fa fa-quote-left"></i>
+                                <p>{{ post.excerpt_post|safe }}</p>
+                            </div>
 
-                        <br>
-                        <br>
-                        <form action="#" method="POST" class="comment-form">
-                            {% csrf_token %}
+                            <!-- Comment -->
+                            <div class="blog-comment">
+                                <h3>Comentários ({{ comments.count }})</h3>
+                                {% for comment in comments %}
+                                    <div class="single-comment">
+                                        <ul>
+                                            <li>{{ comment.name_com }}</li>
+                                            <li>{{ comment.date_com }}</li>
+                                        </ul>
+                                        <p>{{ comment.comment }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
 
-                            <h3>Deixe seu comentário</h3>
+                            <br>
+                            <br>
 
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <input type="text" name="name_com" placeholder="Seu nome" value="{{ form.name_com.value|default:'' }}" required>
+                            <!-- Comment Form -->
+                            <form method="POST" class="comment-form">
+                                {% csrf_token %}
+
+                                <h3>Deixe seu comentário</h3>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <input type="text" name="name_com" placeholder="Seu nome"
+                                               value="{{ form.name_com.value|default:'' }}" required>
+                                    </div>
+
                                     <!-- Exibe mensagens do campo nome -->
                                     {% if form.name_com.errors %}
                                         <div class="alert alert-danger" role="alert">
-                                        {% for error in form.name_com.errors %}
+                                            {% for error in form.name_com.errors %}
                                                 {{ error }}
-                                        {% endfor %}
+                                            {% endfor %}
                                         </div>
                                     {% endif %}
-                                </div>
 
-                                <div class="col-lg-6">
-                                    <input type="text" name="email_com" placeholder="Seu email" value="{{ form.email_com.value|default:'' }}" required>
-                                     <!-- Exibe mensagens do campo email -->
+                                    <div class="col-lg-6">
+                                        <input type="text" name="email_com" placeholder="Seu email"
+                                               value="{{ form.email_com.value|default:'' }}" required>
+                                    </div>
+
+                                    <!-- Exibe mensagens do campo email -->
                                     {% if form.email_com.errors %}
                                         <div class="alert alert-danger" role="alert">
-                                        {% for error in form.email_com.errors %}
+                                            {% for error in form.email_com.errors %}
                                                 {{ error }}
-                                        {% endfor %}
+                                            {% endfor %}
                                         </div>
                                     {% endif %}
-                                </div>
 
-                                <div class="col-lg-12">
-                                    <textarea type="text" name="comment" placeholder="Comentário" value="{{ form.comment.value|default:'' }}"></textarea>
+                                    <div class="col-lg-12">
+                                <textarea type="text" name="comment" placeholder="Comentário"
+                                          value="{{ form.comment.value|default:'' }}"></textarea>
+                                    </div>
+
                                     <!-- Exibe mensagens do campo comentários -->
                                     {% if form.comment.errors %}
                                         <div class="alert alert-danger" role="alert">
-                                        {% for error in form.comment.errors %}
+                                            {% for error in form.comment.errors %}
                                                 {{ error }}
-                                        {% endfor %}
+                                            {% endfor %}
                                         </div>
                                     {% endif %}
+
                                 </div>
-                            </div>
 
-                            {% include '_partials/_messages.html' %}
+                                {% include '_partials/_messages.html' %}
 
-                            <button type="submit">Enviar</button>
-                        </form>
-                        <br>
+                                <button type="submit">Enviar</button>
+                            </form>
+                            <!-- Comment Form End -->
+                            <br>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-</section>
-<!-- Details Section End -->
+    </section>
+    <!-- Details Section End -->
 
 {% endblock %}
 

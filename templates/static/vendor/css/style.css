@@ -16,6 +16,9 @@
 9.  Footer
 10. Other Pages Style
 
+-------------------------------------------------------------------*/
+
+/*----------------------------------------*/
 
 /* Template default CSS
 /*----------------------------------------*/
@@ -111,6 +114,11 @@ ol {
   Helper CSS
 -----------------------*/
 
+.set-bg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top center;
+}
 
 .spad {
     padding-top: 100px;
@@ -164,7 +172,7 @@ ol {
     top: 0;
     left: 0;
     z-index: 999999;
-    background: #ffffff;
+    background: #000;
 }
 
 .loader {
@@ -860,7 +868,7 @@ ol {
 }
 
 .footer-section .fs-left p {
-    color: #070707;
+    color: #7a818d;
 }
 
 .footer-section .subscribe-form {
@@ -930,7 +938,7 @@ ol {
 }
 
 .footer-section .social-links a i {
-    color: #070707;
+    color: #B8C1D0;
     font-size: 28px;
     float: left;
     margin-right: 22px;
@@ -947,6 +955,13 @@ ol {
     text-transform: uppercase;
 }
 
+.footer-section .copyright-text {
+    font-size: 14px;
+    color: #b8c1d0;
+    padding-top: 50px;
+    padding-bottom: 8px;
+}
+
 /* ---------------------------------- Other Pages Styles --------------------------------*/
 
 /*---------------------
@@ -955,7 +970,6 @@ ol {
 
 .header-section-other {
     height: 85px;
-    background: #EAEDF2;
     padding-top: 21px;
     padding-bottom: 15px;
     padding-left: 50px;
@@ -964,7 +978,6 @@ ol {
 
 .header-section-other .logo {
     float: left;
-    margim-bottom: 10px;
 }
 
 .header-section-other .logo a {
@@ -1112,8 +1125,6 @@ ol {
 
 .hero-search {
     height: 252px;
-    justify-content: center;
-    align-items: center;
 }
 
 .hero-search .filter-table {
@@ -1201,7 +1212,7 @@ ol {
 -----------------------*/
 
 .recipe-item {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .recipe-item a {
@@ -1798,6 +1809,11 @@ ol {
 /*--------------------------
   Blog
 --------------------------*/
+
+.blog-section .blog-pic {
+    margin-bottom: 100px;
+    padding: 0 60px;
+}
 
 .blog-text .blog-title {
     text-align: center;
@@ -2497,7 +2513,6 @@ ol {
     }
 
     .header-section-other {
-        color: #8f8f8f;
         padding-left: 0;
         padding-right: 0;
         height: auto;
@@ -2506,7 +2521,7 @@ ol {
     .header-section-other .logo {
         float: none;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .header-section-other .nav-menu .nav-right {

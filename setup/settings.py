@@ -80,6 +80,7 @@ TEMPLATES = [
             ],
             'libraries': {
                 'pagination_tags:': 'posts.templatetags.pagination_tags',
+                'comments_filters': 'posts.templatetags.comments_filters',
             },
         },
     },
@@ -131,7 +132,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates/static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -141,9 +141,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Django Summernote
-X_FRAME_OPTIONS = 'SAMEORIGIN'
-SUMMERNOTE_THEME = 'bs4'
 
 # Messages
 from django.contrib.messages import constants as messages
@@ -154,10 +151,3 @@ MESSAGE_TAGS = {
     messages.SUCCESS: 'alert-success',
     messages.INFO: 'alert-info',
 }
-
-INSTALLED_APPS += ('django_summernote',)
-
-try:
-    from .local_settings import *
-except:
-    pass

@@ -16,14 +16,15 @@ class PostIndexView(ListView):
 
     model = Post
     template_name = 'posts/index.html'
-    paginate_by = 1
+    paginate_by = 6
     context_object_name = 'posts'
 
     def get_queryset(self):
-        """Retorna os posts ordernados por id e injetar o número de comentários,
+        """Faz a consulta e retorna os posts ordernados por id e injetar o número de comentários,
         Post será publicado se o campo published_post for True"""
 
         qs = super().get_queryset()
+        qs = qs.select_related('category_post')  # Faz a consulta de categoria
         qs = qs.order_by('-id').filter(published_post=True)
         qs = qs.annotate(
             # Anotação para contar os comentários
