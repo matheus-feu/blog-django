@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 from django.views.generic.list import ListView
 from django.views.generic.edit import UpdateView
 from django.db.models import Q, Count, Case, When
@@ -85,33 +86,53 @@ class PostSearchView(PostIndexView):
         return qs
 
 
-class PostDetailView(UpdateView):
-    """Classe responsável por exibir os detalhes do post"""
+class PostDetailView(View):
+    """Classe responsável por exibir os detalhes do post,
+    como título, autor, conteúdo, resumo, data de publicação, etc."""
 
     template_name = 'posts/post_detail.html'
-    model = Post
-    form_class = CommentForm
-    context_object_name = 'post'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)  # Pega o contexto do UpdateView, no post_detail.html
-        post = self.get_object()  # Pega o objeto do post
-        comments = Comments.objects.filter(post_com=post.id, published_com=True)  # Pega os comentários do post
-        context['comments'] = comments  # Injeta os comentários no contexto
+    def setup(self, request, *args, **kwargs):
+        """Método que é executado antes de qualquer outro método da classe"""
 
-        return context
+        super().setup(request, *args, **kwargs)
 
-    def form_valid(self, form):
+        pk = self.kwargs.get('pk', None)
+        post = get_object_or_404(Post, pk=pk, published_post=True)
+        comments = Comments.objects.filter(post_com=pk, published_com=True)
+
+        self.context = {
+            'post': post,
+            'comments': comments,
+            'form': CommentForm(request.POST or None),
+        }
+
+    def get(self, request, *args, **kwargs):
+        """Método responsável por exibir os detalhes do post"""
+
+        return render(request, self.template_name, self.context)
+
+    def post(self, request, *args, **kwargs):
         """Método responsável por salvar o formulário de comentários"""
-        post = self.get_object()
-        comment = Comments(**form.cleaned_data)
-        comment.post_com = post  # Relaciona o comentário com o post
+
+        # Checa se o formulário é válido
+        form = self.context['form']
+
+        if not form.is_valid():
+            messages.error(request, 'Erro ao enviar comentário!')
+            return render(request, self.template_name, self.context)
+
+        # Salva o comentário
+        comment = form.save(commit=False)
 
         # Checa se o usuário está logado ou não, permitindo que ele comente como anônimo ou logado.
-        if self.request.user.is_authenticated:
-            comment.user_com = self.request.user
+        if request.user.is_authenticated:
+            comment.user_com = request.user
 
+        # Relaciona o comentário com o post e salva ele no banco de dados
+        comment.post_com = self.context['post']
         comment.save()
-        messages.success(self.request, 'Comentário enviado com sucesso!')
+        messages.success(request, 'Seu comentário foi enviado para a revisão.')
 
-        return redirect('posts:post_detail', pk=post.pk)
+        return redirect('posts:post_detail', pk=self.kwargs.get('pk'))
+

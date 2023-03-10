@@ -12,13 +12,17 @@ class CommentForm(ModelForm):
         comment = cleaned_data.get('comment')
 
         if not name_com and not email_com and not comment:
-            raise forms.ValidationError('Você precisa preencher pelo menos um campo')
+            self.add_error('name_com', 'Você precisa preencher pelo menos um campo')
+            self.add_error('email_com', 'Você precisa preencher pelo menos um campo')
+            self.add_error('comment', 'Você precisa preencher pelo menos um campo')
+
         if email_com:
             if '@' not in email_com:
-                raise forms.ValidationError('E-mail inválido')
+                self.add_error('email_com', 'Email inválido')
+
         if name_com:
             if any(char.isdigit() for char in name_com):
-                raise forms.ValidationError('Nome inválido')
+                self.add_error('name_com', 'Não é permitido números no nome')
 
     class Meta:
         model = Comments
