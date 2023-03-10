@@ -69,6 +69,28 @@ python manage.py runserver
 
 ## 📷 Imagens do projeto
 
+### 📇 Posts
 
-## 📝 Licença
+![posts](https://imgur.com/NtqzVcF.png)
+
+### ⏩ Paginação
+
+![paginação](https://imgur.com/QLIcS8z.png)
+
+### 🔎 Busca e Categorias
+
+![busca&categoria](https://imgur.com/7Ay0pW1.png)
+
+### 📝 Detalhes do Post
+
+![detalhes](https://imgur.com/iqvj0Kf.png)
+
+### 📰 Conteúdo do Post
+
+![conteudo](https://imgur.com/T9maHCL.png)
+
+### 📨 Comentários do Post
+
+![comentarios](https://imgur.com/7HFHJ2I.png)
+
 
